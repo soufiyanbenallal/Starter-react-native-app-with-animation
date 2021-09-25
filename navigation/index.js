@@ -3,6 +3,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createStackNavigator } from '@react-navigation/stack';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
+import ProductScreen from '../screens/ProductScreen';
 import BottomTabNavigator from './BottomTabNavigator';
 // import LinkingConfiguration from './LinkingConfiguration';
 const Stack = createStackNavigator();
@@ -12,8 +13,9 @@ export default function Navigation({ colorScheme }) {
     // linking={LinkingConfiguration}
     <NavigationContainer
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator >
         <Stack.Screen name="Root" component={BottomTabNavigator} />
+        <Stack.Screen name="Product" component={ProductScreen} options={{ title: 'Product!' }} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       </Stack.Navigator>
     </NavigationContainer>

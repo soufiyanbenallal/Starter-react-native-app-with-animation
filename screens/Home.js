@@ -1,17 +1,26 @@
 import React, { useRef } from 'react';
-import { ScrollView, StyleSheet,Animated } from 'react-native';
+import { StyleSheet,Animated, Button } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, View  } from '../components/Themed';
+import { Text, View  } from '../src/layouts/Themed';
 import AnimatedHeader from '../src/layouts/AnimatedHeader';
-export default function Home() {
-  const offset = React.useRef(new Animated.Value(0)).current;
+import AnimatedHeaderTitle from '../src/layouts/AnimatedHeaderTitle';
+export default function Home({navigation}) {
+  const offset = useRef(new Animated.Value(0)).current;
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button title="Update count" />
+      ),
+    });
+  }, [navigation]);
+
   return (
     <SafeAreaView  forceInset={{ top: 'always' }}>
-        <AnimatedHeader animatedValue={offset} title="Home" />
+        <AnimatedHeader offset={offset}>Home</AnimatedHeader>
         <Animated.ScrollView  
           contentContainerStyle={{
-            alignItems: 'center',
-            paddingTop:100
+            paddingTop:50
           }}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
@@ -20,8 +29,8 @@ export default function Home() {
             {useNativeDriver: true}
           )}> 
 
+        <AnimatedHeaderTitle offset={offset} >Home</AnimatedHeaderTitle>
         <View style={styles.container}>
-              <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi cupiditate magni optio dolores commodi! Earum, expedita repellendus? Ipsa cupiditate a quo rerum, perspiciatis quaerat assumenda, suscipit reiciendis incidunt natus explicabo!</Text>
               <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi cupiditate magni optio dolores commodi! Earum, expedita repellendus? Ipsa cupiditate a quo rerum, perspiciatis quaerat assumenda, suscipit reiciendis incidunt natus explicabo!</Text>
               <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi cupiditate magni optio dolores commodi! Earum, expedita repellendus? Ipsa cupiditate a quo rerum, perspiciatis quaerat assumenda, suscipit reiciendis incidunt natus explicabo!</Text>
               <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi cupiditate magni optio dolores commodi! Earum, expedita repellendus? Ipsa cupiditate a quo rerum, perspiciatis quaerat assumenda, suscipit reiciendis incidunt natus explicabo!</Text>

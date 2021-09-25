@@ -5,23 +5,40 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabBarIcon from '../src/components/tabBar/TabBarIcon';
 import Home from '../screens/Home';
 import { BlurView } from 'expo-blur';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // icons, albums, notifications, cart, person
 
 const BottomTab = createBottomTabNavigator();
-
+function LogoTitle() {
+  return (
+    <Image
+      style={{ width: 50, height: 50 }}
+      source={{
+        uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
+      }}
+    />
+  );
+}
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
   return (
     <BottomTab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Home2"
       tabBar={(props) => <MyTabBar {...props} />}
-      
+      screenOptions={{ headerShown: false }}
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="Home"
         component={Home}
         options={{
+          headerTitle: props => <LogoTitle {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => alert('This is a button!')}
+              title="Info"
+              color="#fff"
+            />
+          ),
           tabBarIcon:{
             name:'home'  
           },
@@ -34,6 +51,23 @@ export default function BottomTabNavigator() {
           tabBarIcon:{
             name:'home'  
           },
+        }}
+      />
+       <BottomTab.Screen
+        name="Home2"
+        component={Home}
+        options={{
+          tabBarIcon:{
+            name:'home'  
+          },
+          headerTitle: props => <LogoTitle {...props} />,
+          headerRight: () => (
+            <Button
+              onPress={() => alert('This is a button!')}
+              title="Info"
+              color="#fff"
+            />
+          ),
         }}
       />
     </BottomTab.Navigator>
