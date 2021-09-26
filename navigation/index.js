@@ -5,8 +5,22 @@ import { createStackNavigator } from '@react-navigation/stack';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ProductScreen from '../screens/ProductScreen';
 import BottomTabNavigator from './BottomTabNavigator';
+import { BlurView } from 'expo-blur';
+import { StyleSheet } from 'react-native';
 // import LinkingConfiguration from './LinkingConfiguration';
 const Stack = createStackNavigator();
+const Header = ({light}) => 
+  <View style={{backgroundColor: light ? '#efefef33' : '#33333333'}}>
+    <SafeAreaView>
+      <StatusBar
+        barStyle={light?'dark-content':"light-content"}
+        backgroundColor="#6a51ae"
+      />
+      <View style={{padding: 16}}>
+        <Text style={{color: light ? '#333' : '#fff'}}>Hi there!</Text>
+      </View>
+    </SafeAreaView>
+  </View>
 
 export default function Navigation({ colorScheme }) {
   return (
@@ -14,8 +28,8 @@ export default function Navigation({ colorScheme }) {
     <NavigationContainer
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack.Navigator >
-        <Stack.Screen name="Root" component={BottomTabNavigator} />
-        <Stack.Screen name="Product" component={ProductScreen} options={{ title: 'Product!' }} />
+        {/* <Stack.Screen name="Root" component={BottomTabNavigator} /> */}
+        <Stack.Screen name="ProductScreen" component={ProductScreen} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       </Stack.Navigator>
     </NavigationContainer>
