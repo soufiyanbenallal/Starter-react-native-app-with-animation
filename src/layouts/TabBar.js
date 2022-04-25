@@ -49,7 +49,7 @@ export default function TabBar({ state, descriptors, navigation }) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ ...styles.btnTab, backgroundColor: ( isFocused ? "#00000050" : '#ffffff0'), }}
+            style={{ ...styles.btnTab, backgroundColor: ( isFocused ? "#00000020" : null ) }}
           >
             <TabBarIcon name={isFocused ? options.tabBarIcon.name : options.tabBarIcon.name+'-outline'}  size={28} color={Colors[colorScheme].tint} />
     

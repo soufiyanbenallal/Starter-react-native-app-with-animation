@@ -27,8 +27,8 @@ export default function Navigation({ colorScheme }) {
     // linking={LinkingConfiguration}
     <NavigationContainer
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack.Navigator >
-        {/* <Stack.Screen name="Root" component={BottomTabNavigator} /> */}
+      <Stack.Navigator>
+        <Stack.Screen name="Root" options={{headerShown: false}} component={BottomTabNavigator} />
         <Stack.Screen name="ProductScreen" component={ProductScreen} />
         <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       </Stack.Navigator>

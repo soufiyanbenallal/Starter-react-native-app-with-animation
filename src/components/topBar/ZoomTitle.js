@@ -24,8 +24,8 @@ const ZoomTitle = ({offset, children, style , size = 35}) => {
             <AnimatedText 
                 onLayout={({nativeEvent}) => onLayout(nativeEvent)} 
                 style={[{ 
-                    fontSize:size, 
-                    fontWeight:'800',
+                    fontSize: size, 
+                    fontWeight:"bold",
                     transform:[{scale},{translateX}]
                 },style]}>
                 {children}

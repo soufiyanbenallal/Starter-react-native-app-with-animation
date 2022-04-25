@@ -1,29 +1,34 @@
 import React, {useLayoutEffect, useRef} from 'react';
 import {View, ScrollView, Image, Animated, Button, StyleSheet} from 'react-native';
-import TopNavigation from '../src/layouts/TabBar';
 import { Text } from '../src/layouts/Themed';
-import global from "../constants/Layout";
-import Main from "../src/layouts/Main";
 import { BlurView } from 'expo-blur';
-
+import global from "../constants/Layout";
 const BANNER_H = global.window.width;
+
 const ProductScreen = ({navigation}) => {
-  // const scrollA = useRef(new Animated.Value(0)).current;
+  const scrollA = useRef(new Animated.Value(0)).current;
   useLayoutEffect(() => {
-    // navigation.setOptions({
-    //   headerRight: () => (
-    //     <Button title="Update count" />
-    //   ),
-    //   title: <Text>sofiyan</Text>,
-    //   headerTransparent: true,
-    //   headerBackground: () => (<BlurView tint="default" intensity={100} style={StyleSheet.absoluteFill} />),
-    // });
+    navigation.setOptions({
+      headerRight: () => (
+        <Button title="Update count" />
+      ),
+      title: <Text>sofiyan</Text>,
+      headerTransparent: true,
+      headerBackground: () => (<BlurView tint="default" intensity={100} style={StyleSheet.absoluteFill} />),
+    });
   }, [])
   return (
-    <Main navigation={navigation} title="Product screen">
-      {/* <TopNavigation title="Home" scrollA={scrollA} /> */}
-    {/* <View style={{flex:1, backgroundColor:'red',height:400, width:100}}> */}
-
+    <View>
+      <Animated.ScrollView
+        onScroll={Animated.event([{nativeEvent: {contentOffset: {y: scrollA}}}],{useNativeDriver: true},)}
+        scrollEventThrottle={16}
+      >
+        <View style={styles.bannerContainer}>
+          <Animated.Image
+            style={styles.banner(scrollA)}
+            source={{uri:'https://raw.githubusercontent.com/bungferdly/ScrollAnimation-RN/master/src/banner.jpg'}}
+          />
+        </View>
         <Text>jchdfdjhfj</Text>
         <Text>jchdfdjhfj</Text>
         <Text>jchdfdjhfj</Text>
@@ -55,15 +60,15 @@ const ProductScreen = ({navigation}) => {
         <Text>jchdfdjhfj</Text>
         <Text>jchdfdjhfj</Text>
         <Text>jchdfdjhfj</Text>
-    {/* </View> */}
-    </Main>
+      </Animated.ScrollView>
+    </View>
   );
 };
 
 const styles = {
   bannerContainer: {
     marginTop: -1000,
-    paddingTop: 1000 + 30,
+    paddingTop: 1000 + 20,
     alignItems: 'center',
     overflow: 'hidden',
   },
